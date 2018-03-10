@@ -9,11 +9,14 @@ As an unorganized person with a lot of personal goals, I wanted to create someth
 So, here you go.
 
 ##Technologies used
+
 *React
 *Node
 *JavaScript
 *HTML + CSS
 *Express
+*JSON
+*Mongoose/ MongoDB
 
 ## Approach
 
@@ -23,4 +26,6 @@ So, here you go.
 
 ##Wireframes
 
-##
+##Heroku 
+
+https://wdi14-project3.herokuapp.com/
