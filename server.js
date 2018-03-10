@@ -6,13 +6,14 @@ const app = express()
 const logger = require('morgan')
 
 //connect to the mongoose database
-mongoose.Promise = global.Promisemongo.connect(process.env.MONGODB_URI)
+mongoose.Promise = global.Promise
+mongoose.connect(process.env.MONGODB_URI)
+
 //console.log on connection and on err
 const connection = mongoose.connection
 connection.on('connected', ()=>{
     console.log('Mongoose Connectd Succesfully')
 })
-
 connection.on('error', (err)=>{
     console.log('Mongoose default connection error:' + err)
 })
