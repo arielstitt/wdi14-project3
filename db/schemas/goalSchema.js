@@ -3,7 +3,7 @@ const goalSchema = require('./goalSchema')
 const Schema = mongoose.Schema
 
 const goalSchema = newSchema({
-    name: String,
+    title: String,
     steps: [ stepSchema ]//this sets up a one to many relationship
 })
 

@@ -3,7 +3,7 @@ const stepSchema = require('./stepSchema')
 const Schema = mongoose.connection.Schema
 
 const stepSchema = new Schema({
-    name: String, 
+    date: String, 
     description: String
 })
 
