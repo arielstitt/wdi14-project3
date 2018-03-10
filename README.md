@@ -4,7 +4,7 @@ The Goal'd app's purpose is to make big goals smaller and more digestible. User'
 
 The goals are updatable just incase the user changes his/her mind, no longer wants to complete the goal, or finishes a goal and wants to create room for new goals.
 
-As an unorganized person with a lot of personal goals, I wanted to create something that could keep a cluttered mind on track. I also wanted to streamline the process of achievements so that accomplishing something big or small never feels stressfull or overwhelming. 
+As an unorganized person with a lot of personal goals, I wanted to create something that could keep my cluttered mind on track. I also wanted to streamline the process of achievements so that accomplishing something big or small never feels stressfull or overwhelming. 
 
 So, here you go.
 

@@ -20,7 +20,13 @@ connection.on('error', (err)=>{
 //inject middleware
 app.use(logger('dev'))
 app.use(bodyParser.json())
+//these two lines of code are needed to deploy to heroku
+app.use(express.static(__dirname + '/client/build/'));
+app.get('/', (req,res) => {
+    res.sendFile(__dirname + '/client/build/index.html')
+  })
 
+//send to index.html if it fails
 //set up request that sends back 'Hello World'
 app.get('/', (req, res)=>{
     res.send('Hello World')
