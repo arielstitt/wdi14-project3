@@ -8,4 +8,4 @@ const stepSchema = new Schema({
     description: String
 })
 
-module.export = stepSchema
+module.exports = stepSchema

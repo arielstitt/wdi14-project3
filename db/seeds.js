@@ -1,30 +1,30 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
+//========node db/seeds.js=====
+mongoose.connect(process.env.MONGODB_URI)
 
 //require all the models
 const User = require('../models/User')
 const Goal = require('../models/Goal')
 const Step = require('../models/Step')
 
-//========node db/seeds.js=====
-mongoose.connect(process.env.MONGODB_URI)
+
 
 const db = mongoose.connection
 db.on('open', () => {
     console.log('You have connected to mongoDB!')
 })
 db.on('error', (err) => {
-    console.log(err)
 })
 
 // ======== STEPS ========
 
 const travelStep = new Step({
     date: 'Week 2 of March',
-    description: 'Purchase Passport.'
+    description: 'Pur›chase Passport.'
 
 })
-
+console.log(Step)
 // ======== Goals ===========
 const travel = new Goal({
     title: 'Buy passport',

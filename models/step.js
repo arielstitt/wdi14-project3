@@ -4,4 +4,4 @@ const stepSchema = require('../db/schemas/stepSchema')
 
 const Step = mongoose.model('step', stepSchema)
 
-module.export = Step
+module.exports = Step
