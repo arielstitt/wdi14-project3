@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const userSchema = require('./userSchema')
+const goalSchema = require('./goalSchema')
+const stepSchema = require('./stepSchema')
 const Schema = mongoose.Schema
 
 
@@ -10,6 +11,5 @@ const userSchema = new Schema({
     goals: [ goalSchema ]
 })
 
-const goal
 
 module.exports = userSchema

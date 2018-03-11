@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
-const goalSchema = require('./goalSchema')
+const userSchema = require('./userSchema')
+const stepSchema = require('./stepSchema')
 const Schema = mongoose.Schema
 
-const goalSchema = newSchema({
+const goalSchema = new Schema({
     title: String,
-    steps: [ stepSchema ]//this sets up a one to many relationship
+    steps: [ stepSchema ]
 })
 
-mondule.exports = goalSchema
+module.exports = goalSchema
