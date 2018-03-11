@@ -17,26 +17,26 @@ db.on('error', (err) => {
     console.log(err)
 })
 
-//======USER=======
-const steve = new User({
-    name: 'Steve',
-    imgUrl: 'words', 
-    userInfo: String, 
-    goals: [travel]
-})
-// ======== Goals ===========
-const travel = new Goal({
-    title: 'Buy passport',
-    steps: [ travelStep ]
-
-})
-
 // ======== STEPS ========
 
 const travelStep = new Step({
     date: 'Week 2 of March',
     description: 'Purchase Passport.'
 
+})
+
+// ======== Goals ===========
+const travel = new Goal({
+    title: 'Buy passport',
+    steps: [ travelStep ]
+
+})
+//======USER=======
+const steve = new User({
+    name: 'Steve',
+    imgUrl: 'words', 
+    userInfo: String, 
+    goals: [travel]
 })
 //remove users
 User.remove(() => {
