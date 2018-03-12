@@ -21,7 +21,7 @@ db.on('error', (err) => {
 
 const travelStep = new Step({
     date: 'Week 2 of March',
-    description: 'Pur›chase Passport.'
+    description: 'Purchase Passport.'
 
 })
 console.log(Step)
