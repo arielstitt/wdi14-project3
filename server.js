@@ -20,6 +20,14 @@ connection.on('error', (err)=>{
 //inject middleware
 app.use(logger('dev'))
 app.use(bodyParser.json())
+
+//routes
+
+const userController = require('./controllers/userController')
+app.use('/api/users', userController)
+const goalController = require('./controllers/goalController')
+app.use('/api/user/:userId/goal', goalController)
+
 //these two lines of code are needed to deploy to heroku
 app.use(express.static(__dirname + '/client/build/'));
 app.get('/', (req,res) => {

@@ -24,7 +24,7 @@ const travelStep = new Step({
     description: 'Purchase Passport.'
 
 })
-console.log(Step)
+// console.log(Step)
 // ======== Goals ===========
 const travel = new Goal({
     title: 'Buy passport',
@@ -39,7 +39,7 @@ const steve = new User({
     goals: [travel]
 })
 //remove users
-User.remove(() => {
+User.remove().then(() => {
 //remove goal
     return Goal.remove()
 }).then(() => {
@@ -48,10 +48,11 @@ User.remove(() => {
 }).then(() => {
 //the save the multiple users to the database
     return User.insertMany([steve])
-}).then(() => {
+}).then((users) => {
+    console.log(users)
 //then close the database
     console.log('Saved Successfully')
-    db.close
+    db.close()
 //if there are errors, log the error and close the db
 }).catch((err) => {
 
