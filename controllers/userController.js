@@ -69,9 +69,9 @@ router.patch('/:id', (req, res) => {
   //grab the updated user info from the req body
   const updatedUser = req.body
 
-  User.findByIdAndUpdate(req.params.id, updatedUser, { new: true })
+  User.findByIdAndUpdate(req.params.id, updatedUser)
     .then(() => {
-      res.redirect(`/api/users/${userId}`)
+      res.json('new information')
     })
 })
 
