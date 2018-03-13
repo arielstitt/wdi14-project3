@@ -7,53 +7,96 @@ const router = express.Router({ mergeParams: true })
 
 // get===index
 router.get('/', (req, res) => {
-    User.find().then((users) => {
-      res.json(users)
-    })
-    .catch((err) => console.log(err))
+  console.log('grabbed users from server')
+  User.find().then((users) => {
+    res.json(users)
+    console.log('users data', users)
   })
-
-
-//post===create
-
-router.post('/', (req, res) => {
-    const newUser = new User({
-        name: req.body.name,
-        imgUrl: req.body.imgUrl,
-        userInfo: req.body.userInfo
-    })
-    newUser.save().then((savedUser) => {
-        res.redirect(`/users/${savedUser._id}`)
-    })
+    .catch((err) => console.log(err))
 })
 
-//show
+
+//post===create====works
+
+// router.post('/', (req, res) => {
+//   console.log('hit post route')
+//     const newUser = new User({
+//         name: req.body.name,
+//         imgUrl: req.body.imgUrl,
+//         userInfo: req.body.userInfo
+//     })
+//     newUser.save().then((savedUser) => {
+//         res.json(savedUser)
+//         console.log('new user info', newUser)
+//     })
+// })
+router.post('/', async (req, res) => {
+  try {
+    const newUser = await User.create(req.body)
+    res.json(newUser)
+  } catch (error) {
+    console.log(error)
+  }
+})
+//show===works
 router.get('/:id', (req, res) => {
-    User.findById(req.params.id).then((user) => {
-        res.send(user)
-    }).catch((err)=>{
-        res.status(500)
-        res.send(err)
-    })
+  console.log('hit the find user by  router')
+  User.findById(req.params.id).then((user) => {
+    res.json(user)
+  }).catch((err) => {
+    res.status(500)
+    res.json(err)
+  })
 })
 
 //edit
 router.get('/:id/edit', (req, res) => {
-    User.findById(req.params.id).then((user) => {
-        res.render('user/edit', {
-            id: req.params.id,
-            user: user
-        })
+
+  User.findById(req.params.id).then((user) => {
+    res.render('user/edit', {
+      id: req.params.id,
+      user: user
     })
+  })
 })
 
 //update
 router.patch('/:id', (req, res) => {
-    User.findByIdAndUpdate(req.params.id, {
-        name: req.params.name,
-        imgUrl: req.body.imgUrl,
-        userInfo: req.body.userInfo
+  //get the user id from the id params
+  const userId = req.params.id
+  //grab the updated user info from the req body
+  const updatedUser = req.body
+
+  User.findByIdAndUpdate(req.params.id, updatedUser, { new: true })
+    .then(() => {
+      res.redirect(`/api/users/${userId}`)
     })
 })
+
+//delete
+router.delete('/:id', (req, res) => {
+  //grab the company you want to delete
+  const userId = req.params.id
+  User.findByIdAndRemove(userId)
+    //redirect back to the users index page
+    .then(() => {
+      res.redirect('api/users')
+    }).catch((err) => {
+      console.log(err)
+    })
+})
+// DELETE route
+// router.delete('/:id', async (req, res) => {
+//   try {
+//     const creatureId = req.params.id
+//     await Creature.findByIdAndRemove(creatureId)
+//     res.json({
+//       msg: 'Successfully Deleted'
+//     })
+//   } catch (err) {
+//     console.log(err)
+//     res.status(500).json(err)
+//   }
+// })
 
 module.exports = router
