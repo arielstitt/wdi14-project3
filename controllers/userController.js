@@ -62,8 +62,10 @@ router.get('/:id/edit', (req, res) => {
 
 //update
 router.patch('/:id', (req, res) => {
+  console.log('from the patch route')
   //get the user id from the id params
   const userId = req.params.id
+  console.log('found user', userId)
   //grab the updated user info from the req body
   const updatedUser = req.body
 
@@ -75,12 +77,13 @@ router.patch('/:id', (req, res) => {
 
 //delete
 router.delete('/:id', (req, res) => {
+  console.log('hit the delete route')
   //grab the company you want to delete
   const userId = req.params.id
   User.findByIdAndRemove(userId)
     //redirect back to the users index page
     .then(() => {
-      res.redirect('api/users')
+      res.json('deleted user')
     }).catch((err) => {
       console.log(err)
     })
