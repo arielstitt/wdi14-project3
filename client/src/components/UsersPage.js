@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class UsersPage extends Component {
+    state = {
+        users: []
+    }
+    
     render() {
         return (
             <div>

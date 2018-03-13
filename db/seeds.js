@@ -34,8 +34,8 @@ const travel = new Goal({
 //======USER=======
 const steve = new User({
     name: 'Steve',
-    imgUrl: 'words', 
-    userInfo: String, 
+    imgUrl: 'https://cdnb3.artstation.com/p/assets/images/images/001/863/575/large/irakli-nadar-artstation-da.jpg?1453903033', 
+    userInfo: 'Steve is a father of two.', 
     goals: [travel]
 })
 //remove users

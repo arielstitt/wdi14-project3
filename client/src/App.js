@@ -13,26 +13,27 @@ class App extends Component {
   state = {
     users: []
   }
-  getUser = ()=>{
+  getUsers = ()=>{
     axios.get('/api/users')
-    .then(response => {
+    .then(response =>{
+      console.log(response)
       const users = response.data
       this.setState({ users })
+    }).catch((err)=>{
+      console.log(err)
     })
   }
-  componentWillMount(){
-    this.getUser()
-  }
-
-
+componentWillMount(){
+  this.getUsers()
+}
   render() {
 
-    const UserData = ()=> (<HomePage myUsers={this.state.users}/>)
+
     return (
       <div>
         <Router>
           <Switch>
-            <Route exact path="/" component={UserData} />
+            <Route exact path="/" component={HomePage} />
             <Route exact path="/users" component={UsersPage} />
             <Route exact path="/users/:userId" component={UserProfile} />
             <Route exact path="/users/:userId/:goalId" component={GoalPage} />
