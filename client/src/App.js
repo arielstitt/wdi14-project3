@@ -13,31 +13,33 @@ class App extends Component {
   state = {
     users: []
   }
-  getUsers = ()=>{
+  getUsers = () => {
     axios.get('/api/users')
-    .then(response =>{
-      console.log(response)
-      const users = response.data
-      this.setState({ users })
-    }).catch((err)=>{
-      console.log(err)
-    })
+      .then(response => {
+        console.log(response)
+        const users = response.data
+        this.setState({ users })
+      }).catch((err) => {
+        console.log(err)
+      })
   }
-componentWillMount(){
-  this.getUsers()
-}
+  componentWillMount() {
+    this.getUsers()
+  }
   render() {
-
+    const UsersPageComponent = () =>
+      (<UsersPage
+        users={this.state.users}
+      />)
 
     return (
       <div>
         <Router>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/users" component={UsersPage} />
+            <Route exact path="/users" component={UsersPageComponent} />
             <Route exact path="/users/:userId" component={UserProfile} />
             <Route exact path="/users/:userId/:goalId" component={GoalPage} />
-            {/* <Route exact path="/users/:userId/edit/" component={EditUser} /> */}
           </Switch>
         </Router>
       </div>
