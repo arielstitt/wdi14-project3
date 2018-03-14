@@ -82,7 +82,6 @@ class HomePage extends Component {
 
 
                     <button type="submit">redirect to all users
-                        {/* <a href="/users">Submit</a> */}
                     </button>
 
                 </form>

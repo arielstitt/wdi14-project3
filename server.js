@@ -22,10 +22,10 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 
 //routes
-
+//all users route
 const userController = require('./controllers/userController')
 app.use('/api/users', userController)
-
+//user goals page
 const goalController = require('./controllers/goalController')
 app.use('/api/users/:userId/goals', goalController)
 
