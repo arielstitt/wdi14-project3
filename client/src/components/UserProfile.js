@@ -7,7 +7,9 @@ class UserProfile extends Component {
         return (
             <div>
                 Hi from UserProfile
-                <a href="/users/1/edit">edit page</a>
+                <a href="/users/:userId/edit">edit page</a> <br/>
+                <a href="/users/">users</a>
+
             </div>
         );
     }

@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import {UserImage} from './styled-components/images'
+import { Link } from "react-router-dom";
+
 
 class UsersPage extends Component {
     
     render() {
         console.log(this.props.users)
-        const usersList = this.props.users.map((user, index)=>{
+        const usersList = this.props.users.map( user =>{
             return(
-            <div key={index}>
-                {user.name}
-               <UserImage src={user.imgUrl} alt=""/>
+            <div key={user._userId}>
+            <Link to={`users/${user._id}`}>
+               <UserImage src={user.imgUrl} alt=""/> <br/>
+                {user.name} <br/>
+                {user.userInfo}
+                </Link>
             </div>
         )
         })
