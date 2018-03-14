@@ -16,7 +16,6 @@ class App extends Component {
   getUsers = () => {
     axios.get('/api/users')
       .then(response => {
-        console.log(response)
         const users = response.data
         this.setState({ users })
       }).catch((err) => {

@@ -2,19 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 class HomePage extends Component {
     state = {
-        users: [],
-        newUser: {
-            name: "",
-            imgUrl: "",
-            userInfo: "",
-        }
-    }
-    getUser = () => {
-        axios.get('/api/users')
-            .then(response => {
-                const users = response.data
-                this.setState({ users })
-            })
+        newUser: {}
     }
 
     createUser = () => {
@@ -25,21 +13,27 @@ class HomePage extends Component {
         })
     }
     handleChange = (event) => {
+        event.preventDefault()
+        //the target.name is the key in the key-value pair in your object
+        // for instance, our user object has 'name', 'imgUrl', and 'userInfo' keys
+        //and the value of those keys will be determined by the user input
         const attribute = event.target.name
+        //the value is whatever the user types in 
         const value = event.target.value
+        //this step makes a copy of the state and saves it to the variable newUser
         const newUser = { ...this.state.newUser }
         newUser[attribute] = value
         this.setState({ newUser })
     }
 handleSubmit = (event)=>{
-    this.createUser()
+    // this.createUser()
     //prevents the page from autpmatically refreshing
     event.preventDefault()
-    this.setState({})
+    const newUser = {...this.state.newUser}
+    this.setState({newUser})
 
 }
     componentWillMount() {
-        this.getUser()
     }
 
     render() {
@@ -53,7 +47,6 @@ handleSubmit = (event)=>{
                         <input
                             name="name"
                             placeholder="name"
-                            value={this.state.name}
                             onChange={this.handleChange}
                         />
                     </div>
@@ -61,7 +54,6 @@ handleSubmit = (event)=>{
                         <input
                             name="imgUrl"
                             placeholder="image"
-                            value={this.state.imgUrl}
                             onChange={this.handleChange}
                         />
                     </div>
@@ -69,7 +61,6 @@ handleSubmit = (event)=>{
                         <input
                             name="userInfo"
                             placeholder="description"
-                            value={this.state.userInfo}
                             onChange={this.handleChange}
                         />
                     </div>
