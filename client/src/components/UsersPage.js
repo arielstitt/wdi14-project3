@@ -17,8 +17,10 @@ class UsersPage extends Component {
             <div>
                 Hi from the user UsersPage
                 <a href="/users/1">UserProfile</a>
+                <br/>
+                <a href="/">Create New User</a>
                 {usersList}
-                { 1 + 2 }
+                
             </div>
         );
     }

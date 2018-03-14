@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Link, Redirect } from 'react-router-dom'
+
 class HomePage extends Component {
     state = {
-        newUser: {}
+        newUser: {},
+        redirectToUsers: ''
     }
 
-    // createUser = () => {
-    //     axios.post('/api/users').then(response => {   
-    //         const newUser = response.data
-    //         console.log('created new user',newUser)
-    //         this.setState({ newUser })
-    //     })
-    // }
 
-    createUser = () =>{
+    createUser = () => {
         axios.post('/api/users', this.state.newUser)
-        .then(response =>{this.props.getUsers()}).catch((err)=>{
-            console.log(err)
+            .then(response => { this.props.getUsers() })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    createUser = () => {
+        axios.post('/api/users', this.state.newUser).then((res) => {
+            const newUserId = res.data[res.data.length - 1]
+            { this.props.getUsers() }
+            this.setState({ redirectToUsers: newUserId })
         })
     }
+
     handleChange = (event) => {
         event.preventDefault()
         //the target.name is the key in the key-value pair in your object
@@ -32,19 +38,21 @@ class HomePage extends Component {
         newUser[attribute] = value
         this.setState({ newUser })
     }
-handleSubmit = (event)=>{
-    this.createUser()
-    //prevents the page from autpmatically refreshing
-    event.preventDefault()
-    const newUser = {...this.state.newUser}
-    this.setState({newUser})
+    handleSubmit = (event) => {
+        this.createUser()
+        //prevents the page from autpmatically refreshing
+        event.preventDefault()
+        const newUser = { ...this.state.newUser }
+        this.setState({ newUser })
 
-}
+    }
     componentWillMount() {
     }
 
     render() {
-
+        if (this.state.redirectToUsers !== '') {
+            return <Redirect to={`/users`} />
+        }
         return (
             <div>
                 Hello from the Home HomePage
@@ -71,10 +79,12 @@ handleSubmit = (event)=>{
                             onChange={this.handleChange}
                         />
                     </div>
-                    
-                    <button type="submit">
-                        Submit
+
+
+                    <button type="submit">redirect to all users
+                        {/* <a href="/users">Submit</a> */}
                     </button>
+
                 </form>
 
             </div>
