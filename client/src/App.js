@@ -30,12 +30,14 @@ class App extends Component {
       (<UsersPage
         users={this.state.users}
       />)
-
+    const HomePageComponent = () => (
+      <HomePage getUsers={this.getUsers}/>
+    )
     return (
       <div>
         <Router>
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={HomePageComponent} />
             <Route exact path="/users" component={UsersPageComponent} />
             <Route exact path="/users/:userId" component={UserProfile} />
             <Route exact path="/users/:userId/:goalId" component={GoalPage} />

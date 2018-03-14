@@ -5,11 +5,18 @@ class HomePage extends Component {
         newUser: {}
     }
 
-    createUser = () => {
-        axios.post('/api/users').then(response => {   
-            const newUser = response.data
-            console.log('created new user',newUser)
-            this.setState({ newUser })
+    // createUser = () => {
+    //     axios.post('/api/users').then(response => {   
+    //         const newUser = response.data
+    //         console.log('created new user',newUser)
+    //         this.setState({ newUser })
+    //     })
+    // }
+
+    createUser = () =>{
+        axios.post('/api/users', this.state.newUser)
+        .then(response =>{this.props.getUsers()}).catch((err)=>{
+            console.log(err)
         })
     }
     handleChange = (event) => {
@@ -26,7 +33,7 @@ class HomePage extends Component {
         this.setState({ newUser })
     }
 handleSubmit = (event)=>{
-    // this.createUser()
+    this.createUser()
     //prevents the page from autpmatically refreshing
     event.preventDefault()
     const newUser = {...this.state.newUser}
