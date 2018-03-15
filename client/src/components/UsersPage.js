@@ -6,31 +6,6 @@ import axios from 'axios'
 
 class UsersPage extends Component {
 
-    // state= {
-    //     user: {}
-    // }
-
-    // component = () => {
-    //     const userId = this.props.match.params.userId
-    //     axios.get(`/api/users/${userId}`)
-    //       .then((response) =>{
-    //          const user = response.data
-    //       this.setState({ user }) 
-    //       })
-          
-    //   }
-
-    // remove = async (userId) => {
-    //     //const userId = this.props.match.params.userId
-
-    //     // this.setState({})
-    //     const response =  await axios.delete(`/api/users/${userId}`)
-    //         await this.setState({ user: })
-    //     // .then(res => {})
-    //     // .catch((err) => {
-    //     //   console.log(err)
-    //     // })
-    //   }
 
     render() {
         console.log(this.props.users)

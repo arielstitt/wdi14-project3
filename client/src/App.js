@@ -30,16 +30,9 @@ class App extends Component {
   }
 
   remove = async (userId) => {
-    //const userId = this.props.match.params.userId
-
-    // const users = {...this.state.users}
     const response =  await axios.delete(`/api/users/${userId}`)
     console.log(response)
-        // await this.setState({ users: response.data})
-    // .then(res => {})
-    // .catch((err) => {
-    //   console.log(err)
-    // })
+    this.getUsers()
   }
 
 
