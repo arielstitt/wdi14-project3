@@ -56,7 +56,8 @@ const annabelle = new User({
     goals: [grocery]
 })
 //remove users
-User.remove().then(() => {
+User.remove()
+.then(() => {
 //remove goal
     return Goal.remove()
 }).then(() => {

@@ -44,8 +44,8 @@ class HomePage extends Component {
         event.preventDefault()
         const newUser = { ...this.state.newUser }
         this.setState({ newUser })
-
     }
+    
     componentWillMount() {
     }
 

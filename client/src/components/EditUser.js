@@ -5,37 +5,41 @@ import { Link, Redirect } from 'react-router-dom'
 
 class EditUser extends Component {
     state = {
-        editUser: {},
-        redirectToUser: ''
+        editUser: {
+            name: '',
+            imgUrl: '',
+            userInfo: ''
+        },
+        redirect: false
     }
 
-    componentWillMount(){
+    updateUser = (event) => {
+        const userId = this.props.match.params.userId
+        axios.patch(`/api/users/${userId}`, this.state.editUser)
+            .then(response => {
+                this.setState({ user: response.data, redirect: true })
+            })
+    }
+    handleSubmit = (event) =>{
+        event.preventDefault()
         this.updateUser()
+        const userId = this.props.match.params.userId
     }
-    updateUser = () => {
-        //have to set userId the same as what I put in my server.js
-        axios.patch(`/api/user/`)
-        .then(response => {
-            const editUser = response.data
-            this.setState({ editUser })
-        }).catch((err)=>{
-            console.log(err)
-        })
+
+    handleChange = (event) => {
+        event.preventDefault()
+        const attribute = event.target.name
+        const value = event.target.value
+        const editUser = { ...this.state.editUser }
+        editUser[attribute] = value
+        this.setState({ editUser })
     }
-    // We need to get info about the user with this ID
-    // Use axios to make a get request
-    // updateUser = () => {
-    //     axios.patch(`/api/users/${this.props.match.params}`, this.state.editUser)
-    //         .then((response) => {
-    //             this.setState({ editUser: response.data.editUser })
-    //         })
-    // }
-
-
-
 
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={`/users/${this.props.match.params.userId}`} />
+        }
         return (
             <div>
 
@@ -64,10 +68,11 @@ class EditUser extends Component {
                     </div>
 
 
-                    <button type="submit">redirect to user
+                    <button type="submit">redirect to user profile
                     </button>
 
                 </form>
+
             </div>
         );
     }

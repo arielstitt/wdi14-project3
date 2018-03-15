@@ -32,7 +32,7 @@ class UserProfile extends Component {
                 <div>
                     <UserImage src={this.state.user.imgUrl} alt="" />
                 </div>
-                {this.state.user._id}
+                {/* {this.state.user._id} */}
                 <div>
                    <h3>{this.state.user.userInfo}</h3> 
                 </div>
