@@ -8,18 +8,28 @@ class EditUser extends Component {
         editUser: {},
         redirectToUser: ''
     }
-    componentDidMount = () => {
+
+    componentWillMount(){
+        this.updateUser()
+    }
+    updateUser = () => {
         //have to set userId the same as what I put in my server.js
-        const userId = this.props.match.params.userId
+        axios.patch(`/api/user/`)
+        .then(response => {
+            const editUser = response.data
+            this.setState({ editUser })
+        }).catch((err)=>{
+            console.log(err)
+        })
     }
     // We need to get info about the user with this ID
     // Use axios to make a get request
-    updateUser = () => {
-        axios.patch(`/api/users/${this.props.match.params}`, this.state.editUser)
-            .then((response) => {
-                this.setState({ editUser: response.data.editUser })
-            })
-    }
+    // updateUser = () => {
+    //     axios.patch(`/api/users/${this.props.match.params}`, this.state.editUser)
+    //         .then((response) => {
+    //             this.setState({ editUser: response.data.editUser })
+    //         })
+    // }
 
 
 
