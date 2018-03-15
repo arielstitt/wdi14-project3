@@ -21,7 +21,7 @@ class UsersPage extends Component {
         return (
             <div>
                 Hi from the user UsersPage
-                <a href="/users/1">UserProfile</a>
+                <a href="/users/">UserProfile</a>
                 <br/>
                 <a href="/">Create New User</a>
                 {usersList}

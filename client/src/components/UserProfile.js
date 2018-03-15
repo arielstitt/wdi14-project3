@@ -28,7 +28,7 @@ class UserProfile extends Component {
             <div>
                 Hi from UserProfile
                 <a href="/users/:userId/edit">edit page</a> <br/>
-                <a href="/users/">users</a>
+                <a href="/users">users</a>
                 <UserImage src={this.state.user.imgUrl} alt=""/>
             </div>
         );
