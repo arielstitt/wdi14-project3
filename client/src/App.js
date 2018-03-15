@@ -32,9 +32,10 @@ class App extends Component {
   remove = async (userId) => {
     //const userId = this.props.match.params.userId
 
-    // this.setState({})
+    // const users = {...this.state.users}
     const response =  await axios.delete(`/api/users/${userId}`)
-        await this.setState({ users: this.state.users})
+    console.log(response)
+        // await this.setState({ users: response.data})
     // .then(res => {})
     // .catch((err) => {
     //   console.log(err)
@@ -47,7 +48,7 @@ class App extends Component {
     const UsersPageComponent = () =>
       (<UsersPage
         users={this.state.users}
-        remove = {this.remove}
+        remove={this.remove}
       />)
     const HomePageComponent = () => (
       <HomePage getUsers={this.getUsers}/>
@@ -57,7 +58,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={HomePageComponent} />
-            <Route exact path="/users" component={UsersPageComponent} />
+            <Route exact path="/users" render={UsersPageComponent} />
             <Route exact path="/users/:userId" component={UserProfile} />
             <Route exact path="/users/:userId/:goalId" component={GoalPage} />
           </Switch>
