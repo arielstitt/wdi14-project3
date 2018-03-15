@@ -13,9 +13,9 @@ class UserProfile extends Component {
         redirect: false,
       };
 
-      componentDidMount() {
-          const userId = this.props.match.params.userId
-          axios.get(`/api/users/${userId}`)
+      componentDidMount = () => {
+        const userId = this.props.match.params.userId
+        axios.get(`/api/users/${userId}`)
           .then((response) =>{
              const user = response.data
           this.setState({ user }) 
