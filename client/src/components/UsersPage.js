@@ -12,7 +12,7 @@ class UsersPage extends Component {
         const usersList = this.props.users.map(user => {
             return (
                 <div key={user._userId}>
-                    <Link to={`users/${user._id}`}>
+                    <Link to={`/users/${user._id}`}>
                         <UserImage src={user.imgUrl} alt="" /> <br />
                         {user.name} <br />
                         {user.userInfo}

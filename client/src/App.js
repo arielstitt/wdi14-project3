@@ -53,6 +53,7 @@ class App extends Component {
             <Route exact path="/" component={HomePageComponent} />
             <Route exact path="/users" render={UsersPageComponent} />
             <Route exact path="/users/:userId" component={UserProfile} />
+            <Route exact path="/users/:userId/edit" component={EditUser} />
             <Route exact path="/users/:userId/:goalId" component={GoalPage} />
           </Switch>
         </Router>
