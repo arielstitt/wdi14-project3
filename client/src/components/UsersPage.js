@@ -6,9 +6,9 @@ import axios from 'axios'
 
 class UsersPage extends Component {
 
-    state= {
-        user: {}
-    }
+    // state= {
+    //     user: {}
+    // }
 
     // component = () => {
     //     const userId = this.props.match.params.userId
@@ -20,15 +20,17 @@ class UsersPage extends Component {
           
     //   }
 
-    remove = () => {
-        const userId = this.props.match.params.userId
-        this.setState({})
-        axios.delete(`/api/users/${userId}`)
-        .then(res => {})
-        .catch((err) => {
-          console.log(err)
-        })
-      }
+    // remove = async (userId) => {
+    //     //const userId = this.props.match.params.userId
+
+    //     // this.setState({})
+    //     const response =  await axios.delete(`/api/users/${userId}`)
+    //         await this.setState({ user: })
+    //     // .then(res => {})
+    //     // .catch((err) => {
+    //     //   console.log(err)
+    //     // })
+    //   }
 
     render() {
         console.log(this.props.users)
@@ -41,7 +43,7 @@ class UsersPage extends Component {
                         {user.userInfo}
                     </Link>
                     <div>
-                        <button onClick={this.remove}>Delete</button>
+                        <button onClick={() => this.props.remove(user._id)}>Delete</button>
                     </div>
                 </div>
             )

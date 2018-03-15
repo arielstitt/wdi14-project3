@@ -13,7 +13,7 @@ class UserProfile extends Component {
         redirect: false,
       };
 
-      componentDidMount = () => {
+      componentDidMount= () => {
         const userId = this.props.match.params.userId
         axios.get(`/api/users/${userId}`)
           .then((response) =>{

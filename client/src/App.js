@@ -13,6 +13,12 @@ class App extends Component {
   state = {
     users: []
   }
+
+  componentWillMount() {
+    this.getUsers()
+  }
+
+
   getUsers = () => {
     axios.get('/api/users')
       .then(response => {
@@ -22,14 +28,26 @@ class App extends Component {
         console.log(err)
       })
   }
-  componentWillMount() {
-    this.getUsers()
-    
+
+  remove = async (userId) => {
+    //const userId = this.props.match.params.userId
+
+    // this.setState({})
+    const response =  await axios.delete(`/api/users/${userId}`)
+        await this.setState({ users: this.state.users})
+    // .then(res => {})
+    // .catch((err) => {
+    //   console.log(err)
+    // })
   }
+
+
+ 
   render() {
     const UsersPageComponent = () =>
       (<UsersPage
         users={this.state.users}
+        remove = {this.remove}
       />)
     const HomePageComponent = () => (
       <HomePage getUsers={this.getUsers}/>
