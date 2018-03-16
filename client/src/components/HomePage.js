@@ -1,14 +1,50 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
+import styled from 'styled-components'
+
+const Background = styled.div`
+height: 100vh;
+width: 100vw;
+background-image: url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9b1c8aaccdc1a980f26c60016117fc60&auto=format&fit=crop&w=1349&q=80');
+`
+
+const NavBar = styled.nav`
+height: 10vh;
+border: slategray solid;
+display:flex;
+justify-content: flex-end;
+background: #535e69;
+`
+const FormDiv = styled.div`
+height: 60vh;
+width: 41vw;
+background-color: #f1f0f0;
+border-radius: 10%;
+padding: 10px;
+margin-top: 4em;
+border: #bdbcc3 solid 1px;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+`
+const Input = styled.input`
+width: 38vw;
+    height: 4vh;
+    margin: 10px;
+`
+const Button = styled.button`
+background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    padding: 1em;
+`
 
 class HomePage extends Component {
     state = {
         newUser: {},
         redirectToUsers: ''
     }
-
-
     createUser = () => {
         axios.post('/api/users', this.state.newUser)
             .then(response => { this.props.getUsers() })
@@ -27,25 +63,19 @@ class HomePage extends Component {
 
     handleChange = (event) => {
         event.preventDefault()
-        //the target.name is the key in the key-value pair in your object
-        // for instance, our user object has 'name', 'imgUrl', and 'userInfo' keys
-        //and the value of those keys will be determined by the user input
         const attribute = event.target.name
-        //the value is whatever the user types in 
         const value = event.target.value
-        //this step makes a copy of the state and saves it to the variable newUser
         const newUser = { ...this.state.newUser }
         newUser[attribute] = value
         this.setState({ newUser })
     }
     handleSubmit = (event) => {
         this.createUser()
-        //prevents the page from autpmatically refreshing
         event.preventDefault()
         const newUser = { ...this.state.newUser }
         this.setState({ newUser })
     }
-    
+
     componentWillMount() {
     }
 
@@ -54,39 +84,43 @@ class HomePage extends Component {
             return <Redirect to={`/users`} />
         }
         return (
-            <div>
-                Hello from the Home HomePage
-                <a href="/users">UserPage</a>
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <input
-                            name="name"
-                            placeholder="name"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div>
-                        <input
-                            name="imgUrl"
-                            placeholder="image"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div>
-                        <input
-                            name="userInfo"
-                            placeholder="description"
-                            onChange={this.handleChange}
-                        />
-                    </div>
+            <Background>
+                <NavBar>
+                    <a href="/users">UserPage</a>
+                </NavBar>                    
+
+                <FormDiv>
+                    <form onSubmit={this.handleSubmit}>
+                        <h3>New User? Sign up Here!</h3>
+                        <div className="Background-img">
+                            <Input
+                                name="name"
+                                placeholder="name"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div>
+                            <Input
+                                name="imgUrl"
+                                placeholder="image"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div>
+                            <Input
+                                name="userInfo"
+                                placeholder="description"
+                                onChange={this.handleChange}
+                            />
+                        </div>
 
 
-                    <button type="submit">redirect to all users
-                    </button>
+                        <Button type="submit">Create User Profile
+                    </Button>
 
-                </form>
-
-            </div>
+                    </form>
+                </FormDiv>
+            </Background>
         );
     }
 }

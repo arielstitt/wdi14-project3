@@ -6,3 +6,7 @@ width: 30vw;
 hight: 30vw;
 border-radius: 40%;
 `
+
+export const homePageImg= styled.div`
+
+`
