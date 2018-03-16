@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 
 export const UserImage= styled.img`
-width: 30vw;
-hight: 30vw;
+width: 300px;
+height: 300px;
 border-radius: 40%;
 `
 
