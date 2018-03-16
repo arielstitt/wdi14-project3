@@ -22,6 +22,23 @@ display: flex;
 justify-content: space-evenly;
 align-items: center;
 `
+const Background = styled.div`
+height: 100vh;
+width: 100vw;
+background-image: url('https://images.unsplash.com/photo-1485897790417-5bbfe0e37428?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=25aca667c0ff9b8a65f975a926b50c9a&auto=format&fit=crop&w=1500&q=80');
+background-size: cover;
+`
+const Input = styled.input`
+width: 38vw;
+    height: 4vh;
+    margin: 10px;
+`
+const Button = styled.button`
+background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    padding: 1em;
+`
 
 class EditUser extends Component {
     state = {
@@ -40,7 +57,7 @@ class EditUser extends Component {
                 this.setState({ user: response.data, redirect: true })
             })
     }
-    handleSubmit = (event) =>{
+    handleSubmit = (event) => {
         event.preventDefault()
         this.updateUser()
         const userId = this.props.match.params.userId
@@ -61,43 +78,42 @@ class EditUser extends Component {
             return <Redirect to={`/users/${this.props.match.params.userId}`} />
         }
         return (
-            <div>
-<NavBar>
-<a href="/users">Back to Profile Page</a>
-</NavBar>
-                HELLO
+            <Background>
+                <NavBar>
+                </NavBar>
+                
                 <FormDiv>
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <input
-                            name="name"
-                            placeholder="name"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div>
-                        <input
-                            name="imgUrl"
-                            placeholder="image"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div>
-                        <input
-                            name="userInfo"
-                            placeholder="description"
-                            onChange={this.handleChange}
-                        />
-                    </div>
+                    <form onSubmit={this.handleSubmit}>
+                        <div>
+                            <Input
+                                name="name"
+                                placeholder="name"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div>
+                            <Input
+                                name="imgUrl"
+                                placeholder="image"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div>
+                            <Input
+                                name="userInfo"
+                                placeholder="description"
+                                onChange={this.handleChange}
+                            />
+                        </div>
 
 
-                    <button type="submit">redirect to user profile
-                    </button>
+                        <Button type="submit">redirect to user profile
+                    </Button>
 
-                </form>
+                    </form>
 
-            </FormDiv>
-            </div>
+                </FormDiv>
+            </Background>
         );
     }
 }
